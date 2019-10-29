@@ -17,16 +17,26 @@ public class Logic {
     private final Figure[] figures = new Figure[32];
     private int index = 0;
 
+
     public void add(Figure figure) {
         this.figures[this.index++] = figure;
     }
 
     public boolean move(Cell source, Cell dest) {
         boolean rst = false;
+        boolean isBlocked = false;
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+            for (int i = 0; i < figures.length; i++) {
+                for (int j = 0; j < steps.length; j++) {
+                    if (figures[i] != null && figures[i].position().equals(steps[j])){
+                        isBlocked = true;
+                        break;
+                    }
+                }
+            }
+            if (steps.length > 0 && steps[steps.length - 1].equals(dest) && !isBlocked) {
                 rst = true;
                 this.figures[index] = this.figures[index].copy(dest);
             }

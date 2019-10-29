@@ -30,4 +30,17 @@ public class BishopBlackTest {
         Cell[] result = {Cell.D2, Cell.E3, Cell.F4, Cell.G5};
         assertThat(bishopBlack.way(Cell.C1, Cell.G5), is(result) );
     }
+
+    @Test
+    public void isDiagonalTest() throws IllegalStateException{
+        BishopBlack bishopBlack = new BishopBlack(Cell.C1);
+        try {
+            bishopBlack.way(Cell.C8, Cell.F4);
+            Assert.fail("Expected IllegalStateException");
+        } catch (IllegalStateException thrown){
+            Assert.assertNotEquals("message", thrown.getMessage());
+        }
+    }
+
+
 }

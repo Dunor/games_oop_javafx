@@ -44,6 +44,7 @@ public class BishopBlack implements Figure {
         //TODO check diagonal
         int x = Math.abs(source.ordinal() - dest.ordinal());
         return x % 7 == 0 || x % 9 == 0;
+
     }
 
     @Override
